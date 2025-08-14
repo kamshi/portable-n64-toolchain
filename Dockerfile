@@ -7,7 +7,7 @@ label maintainer="MrPnut"
 
 # arguments
 arg BUILD_TOOLCHAIN=false
-arg NO_RUST=false
+arg NO_RUST=true
 
 # copy sdk and patches over to build context
 copy n64sdk n64sdk
@@ -17,8 +17,10 @@ copy n64chain n64chain
 copy cargo cargo
 
 # get dependencies we need for rest of script
-run apt-get update
-run apt-get -y upgrade
+run apt-get update && \
+    apt-get -y install xz-utils wget git build-essential ca-certificates texinfo bison flex golang-go libgmp-dev libmpfr-dev libmpc-dev --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # install the toolchain
 run chmod +x /scripts/install_n64chain.sh
@@ -33,7 +35,9 @@ run chmod +x /scripts/install_rust.sh
 run /scripts/install_rust.sh ${NO_RUST}
 
 # set up environment variables each invocation of docker run will reuse
-env ROOT=/n64sdk/ultra
+env N64_SDK=/n64sdk
+env ROOT=$N64_SDK/ultra
+env N64KITDIR=$N64_SDK/nintendo/n64kit/
 env PATH=/n64chain/tools/bin:/cargo/bin:$PATH
 env GCCDIR=$ROOT/GCC
 env CARGO_HOME=/cargo
