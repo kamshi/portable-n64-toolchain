@@ -36,7 +36,7 @@ At this point the toolchain will build.  It will take 10 minutes at most, but yo
 After that's done you have a Docker image of the toolchain.  You can go to where the source for your project is at and run the following to build it.
 
 ```
-> docker run -w /mnt/src -v /where/my/source/is/locally:/mnt/src -it n64 make
+> docker run -w /mnt/src -v /where/my/source/is/locally:/mnt/src -u $(id -u):$(id -g) -it n64 make
 ```
 
 ## Windows Notes
