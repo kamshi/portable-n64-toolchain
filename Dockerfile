@@ -6,7 +6,7 @@ label description="Docker build for C/Rust N64 build environment"
 label maintainer="MrPnut"
 
 # arguments
-arg BUILD_TOOLCHAIN=false
+arg BUILD_TOOLCHAIN=true
 arg NO_RUST=true
 
 # copy sdk and patches over to build context
