@@ -5,7 +5,7 @@ echo "Installing n64chain..."
 
 if [ "$1" = "false" ]; then
     echo "Using prebuilt toolchain..."
-    
+
     cd /n64chain
     tar xJf n64chain.tar.xz
     rm n64chain.tar.xz
@@ -15,6 +15,8 @@ else
     rm -rf /n64chain
     cd /
     git clone https://github.com/kamshi/n64chain.git
+    cd n64chain
+    git checkout gcc-13
 
     #mkdir -p /n64chain/tools/tarballs
     #mkdir -p /n64chain/tools/stamps
@@ -29,5 +31,5 @@ else
     #touch /n64chain/tools/stamps/make-extract
 
     chmod +x /n64chain/tools/build-posix64-toolchain.sh
-    /n64chain/tools/build-posix64-toolchain.sh    
-fi    
+    /n64chain/tools/build-posix64-toolchain.sh
+fi
