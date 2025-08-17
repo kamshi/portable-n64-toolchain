@@ -15,6 +15,8 @@ else
     rm -rf /n64chain
     cd /
     git clone https://github.com/kamshi/n64chain.git
+    cd n64chain
+    git checkout gcc-15
 
     #mkdir -p /n64chain/tools/tarballs
     #mkdir -p /n64chain/tools/stamps
