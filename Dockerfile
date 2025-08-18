@@ -1,4 +1,4 @@
-from ubuntu:18.04
+from ubuntu:24.04
 
 # meta
 label version="1.0.2"
